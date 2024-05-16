@@ -29,10 +29,6 @@ func (m *SyncMap[K, V]) Store(key K, value V) {
 // The loaded result is true if the value was loaded, false if stored.
 func (m *SyncMap[K, V]) LoadOrStore(key K, value V) (actual V, loaded bool) {
 	a, l := m.syncMap.LoadOrStore(key, value)
-	if !l {
-		var a2 V
-		return a2, false
-	}
 	return a.(V), l
 }
 
